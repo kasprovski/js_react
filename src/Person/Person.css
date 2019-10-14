@@ -1,0 +1,14 @@
+.Person{
+    width: 95%;
+    box-shadow: 0 2px 3px black;
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+    margin: 2rem auto;
+}
+
+.Guziki {
+    display: flex;
+    justify-content: space-between;
+}
+
