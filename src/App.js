@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import Osoby from './Osoby/Osoby';
+import Photos from './Photos/Photos';
 
 class App extends Component {
 
   state= {
     osoby: [
-      {name: "Kasper z dzisiaj", age: "28", job: "w tym momencie pisze jakis kod" },
-      {name: "Kasia z dzisiaj", age: "28", job: "teraz jestem w pracy" }
+      {id: "dsada", name: "Kasper z dzisiaj", age: "28", job: "w tym momencie pisze jakis kod" },
+      {id: "dwda", name: "Kasia z dzisiaj", age: "28", job: "teraz jestem w pracy" }
     ],
     ludzie: [
       {imie: "nieokreślony"}
-    ]
+    ],
+    showPhotos: false,
   }
 
   switchNameHandler = () => {
@@ -26,7 +28,6 @@ class App extends Component {
   }
 
   switchNameHandler2 = () => {
-    console.log("zostało klikniete")
     this.setState({
       osoby: [
         {name: "Kasper z przeszłości", age: "18", job: "na co dzień chodzę do szkoły" },
@@ -36,11 +37,10 @@ class App extends Component {
   }
 
   switchNameHandler3 = () => {
-    console.log("zostało klikniete")
     this.setState({
       osoby: [
         {name: "Kasper z dzisiaj", age: "28", job: "w tym momencie pisze jakis kod" },
-      {name: "Kasia z dzisiaj", age: "28", job: "teraz jestem w pracy" }
+        {name: "Kasia z dzisiaj", age: "28", job: "teraz jestem w pracy" }
       ]
     })
   }
@@ -54,11 +54,17 @@ class App extends Component {
     })
   }
 
+  togglePhotosHandler= () => {
+    const doesShow = this.state.showPhotos;
+    this.setState({showPhotos: !doesShow});
+  }
+
   
   render() {
 
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: " 2px solid green",
       padding: "8px",
@@ -112,7 +118,16 @@ class App extends Component {
          <Osoby className="osoba"
         name={this.state.ludzie[0].imie} 
         changed={this.nameChangeHandler} />
-       </div>
+      </div>
+         <h3>przykład 4,wyświetlanie i chowanie diva</h3>
+
+            { 
+              this.state.showPhotos ? // if this state.show photos is display (div na dole) ale wartość jest ustalona na false więc się nie pojawia
+              <div>
+              <Photos className="Photos"/>
+              </div> : null // else do nth | zamieszczenie tego diva w klamrach pozwala nam skorzystac z tych ifów w tym miejscu
+            }
+       <button onClick={this.togglePhotosHandler} style={style}>Show/Hide div</button>
 
       </div>
     );
